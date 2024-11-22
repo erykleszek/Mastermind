@@ -1,10 +1,14 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Mastermind {
     public static void main(String[] args) {
+        displayAsciiArt("C:\\Users\\Lesio\\Desktop\\kurs\\Mastermind\\src\\main\\java\\org\\example\\mastermind.txt");
         System.out.println("Witaj w grze Mastermind!");
         System.out.println("Zgadnij 4 cyfrowy kod składający się z cyfr od 1 do 6.");
 
@@ -78,5 +82,16 @@ public class Mastermind {
         }
 
         scanner.close();
+    }
+    public static void displayAsciiArt(String fileName) {
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println(); // Dodanie pustej linii po ASCII Art
+        } catch (IOException e) {
+            System.out.println("Nie udało się załadować ASCII Art: " + e.getMessage());
+        }
     }
 }
