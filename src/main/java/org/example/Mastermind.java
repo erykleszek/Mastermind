@@ -25,10 +25,12 @@ public class Mastermind {
             System.out.println("Wprowadź swoją próbę:");
             String guess = scanner.nextLine();
 
+            if (!guess.matches("\\d{" + codeLength + "}")) {
+                System.out.println("Wprowadź dokładnie " + codeLength + " cyfry.");
+                continue;
+            }
+
             try {
-                if (guess.length() != codeLength) {
-                    throw new NumberFormatException();
-                }
                 for (int i = 0; i < codeLength; i++) {
                     userCode[i] = Character.getNumericValue(guess.charAt(i));
                     if (userCode[i] < 1 || userCode[i] > maxDigit) {
